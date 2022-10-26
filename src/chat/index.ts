@@ -2,7 +2,7 @@ import { BroadcastChannelPubSub } from "../deno/broadcastChannelPubSub.ts";
 import { DenoOakLiveViewServer } from "../deno/server.ts";
 import { Application, LiveViewRouter, Router, send } from "../deps.ts";
 import { liveHtmlTemplate, wrapperTemplate } from "./liveTemplates.ts";
-import { chatLiveView } from "./liveview/chat.ts";
+import { chatLiveView } from "./liveview/page.ts";
 
 // map request paths to LiveViews
 const lvRouter: LiveViewRouter = {

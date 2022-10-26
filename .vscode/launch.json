@@ -8,7 +8,7 @@
       "request": "launch",
       "name": "Launch",
       "type": "node",
-      "program": "${workspaceFolder}/src/example/index.ts",
+      "program": "${workspaceFolder}/src/chat/index.ts",
       "cwd": "${workspaceFolder}",
       "runtimeExecutable": "deno",
       "runtimeArgs": [
