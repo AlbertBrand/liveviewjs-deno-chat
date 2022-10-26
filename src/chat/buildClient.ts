@@ -1,29 +1,19 @@
 import * as esbuild from "https://deno.land/x/esbuild@v0.15.9/mod.js";
 
 // Build / watch the client code
-esbuild
-  .build({
-    entryPoints: ["src/client/index.ts"],
-    outdir: "public/js",
-    bundle: true,
-    format: "esm",
-    platform: "browser",
-    sourcemap: true,
-    watch: {
-      onRebuild(error) {
-        if (error) {
-          console.error("client rebuild failed");
-          console.error(error);
-        } else {
-          console.log("client build succeeded");
-        }
-      },
-    },
-  })
-  .then((result) => {
-    if (result.errors.length > 0) {
-      console.error(result.errors);
-    } else {
-      console.log("client build succeeded");
-    }
-  });
+const result = await esbuild.build({
+  entryPoints: ["src/client/index.ts"],
+  outdir: "public/js",
+  bundle: true,
+  format: "esm",
+  platform: "browser",
+  sourcemap: true,
+});
+
+if (result.errors.length > 0) {
+  console.error(result.errors);
+} else {
+  console.log("client build succeeded");
+}
+
+esbuild.stop();
