@@ -1,0 +1,28 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "request": "launch",
+      "name": "Launch",
+      "type": "node",
+      "program": "${workspaceFolder}/src/example/index.ts",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "deno",
+      "runtimeArgs": [
+        "run",
+        "--inspect",
+        "--unstable",
+        "--allow-net",
+        "--allow-run",
+        "--allow-read",
+        "--allow-write",
+        "--import-map=import_map.json",
+        "--allow-env"
+      ],
+      "attachSimplePort": 9229,
+    }
+  ]
+}
