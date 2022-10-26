@@ -43,7 +43,6 @@ export const liveHtmlTemplate: LiveViewHtmlPageTemplate = (
         </style>
       </head>
       <body>
-        <p><a href="/">← Back</a><br /><br /></p>
         ${safe(liveViewContent)}
       </body>
     </html>

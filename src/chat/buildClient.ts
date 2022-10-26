@@ -27,10 +27,3 @@ esbuild
       console.log("client build succeeded");
     }
   });
-
-// Spawn the server
-Deno.run({
-  cmd: "deno run --unstable --allow-net --allow-read --allow-write --allow-env --import-map=import_map.json --watch src/chat/index.ts".split(
-    " "
-  ),
-});
