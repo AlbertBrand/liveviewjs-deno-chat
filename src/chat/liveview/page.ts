@@ -71,7 +71,14 @@ export const chatLiveView = createLiveView<{ chatMessages: Chat[] }, { type: "se
   }
 );
 
-const formatter = new Intl.DateTimeFormat("en");
+const formatter = new Intl.DateTimeFormat("en", {
+  year: "numeric",
+  month: "long",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+});
 
 function renderChatMessage(c: Chat) {
   return html`
