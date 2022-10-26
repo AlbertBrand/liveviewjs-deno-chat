@@ -2,10 +2,10 @@ import { FileSystemAdaptor } from "../deps.ts";
 
 export class DenoFileSystemAdaptor implements FileSystemAdaptor {
   // make temp dir once
-  tempDir = Deno.makeTempDirSync({ suffix: "com.liveviewjs.files" });
+  // tempDir = Deno.makeTempDirSync({ suffix: "com.liveviewjs.files" });
 
   tempPath(lastPathPart: string): string {
-    return `${this.tempDir}/${lastPathPart}`;
+    return `${lastPathPart}`;
   }
   writeTempFile(dest: string, data: Buffer) {
     Deno.writeFileSync(dest, data, { create: true });
