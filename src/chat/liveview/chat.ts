@@ -28,7 +28,6 @@ export const chatLiveView = createLiveView<{ chatMessages: Chat[] }, { type: "se
       socket.assign({ chatMessages });
     },
     handleEvent: (event) => {
-      // handle increment and decrement events
       switch (event.type) {
         case "send":
           chatMessages.push({
