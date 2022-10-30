@@ -19,58 +19,60 @@ const chatMessages: Chat[] = [
   },
 ];
 
-export const chatLiveView = createLiveView<{ chatMessages: Chat[] }, { type: "send"; author: string; message: string }>(
-  {
-    mount: (socket) => {
-      if (socket.connected) {
-        socket.subscribe("chatMessages");
-      }
-      socket.assign({ chatMessages });
-    },
-    handleEvent: (event) => {
-      switch (event.type) {
-        case "send":
-          chatMessages.push({
-            author: event.author,
-            message: event.message,
-            timestamp: new Date(),
-          });
-          pubSub.broadcast("chatMessages", { type: "updated" });
-          break;
-      }
-    },
-    handleInfo: (info, socket) => {
-      switch (info.type) {
-        case "updated":
-          socket.assign({ chatMessages });
-          break;
-      }
-    },
-    render: (context, meta) => {
-      const { chatMessages } = context;
-      return html`
-        <h1>Chat</h1>
+export const chatLiveView = createLiveView<
+  { chatMessages: Chat[] },
+  { type: "send"; author: string; message: string },
+  { type: "updated" }
+>({
+  mount: (socket) => {
+    if (socket.connected) {
+      socket.subscribe("chatMessages");
+    }
+    socket.assign({ chatMessages });
+  },
+  handleEvent: (event) => {
+    switch (event.type) {
+      case "send":
+        chatMessages.push({
+          author: event.author,
+          message: event.message,
+          timestamp: new Date(),
+        });
+        pubSub.broadcast("chatMessages", { type: "updated" });
+        break;
+    }
+  },
+  handleInfo: (info, socket) => {
+    switch (info.type) {
+      case "updated":
+        socket.assign({ chatMessages });
+        break;
+    }
+  },
+  render: (context, meta) => {
+    const { chatMessages } = context;
+    return html`
+      <h1>Chat</h1>
 
-        ${chatMessages.map(renderChatMessage)}
+      ${chatMessages.map(renderChatMessage)}
 
-        <form phx-submit="send">
-          <input type="hidden" name="_csrf_token" value="${meta.csrfToken}" />
+      <form phx-submit="send">
+        <input type="hidden" name="_csrf_token" value="${meta.csrfToken}" />
 
-          <label>
-            <span>Message:</span>
-            <textarea type="text" name="message" placeholder="Message"></textarea>
-          </label>
-          <label>
-            <span>Author:</span>
-            <input type="text" name="author" placeholder="Author" autocomplete="off" />
-          </label>
+        <label>
+          <span>Message:</span>
+          <textarea type="text" name="message" placeholder="Message"></textarea>
+        </label>
+        <label>
+          <span>Author:</span>
+          <input type="text" name="author" placeholder="Author" autocomplete="off" />
+        </label>
 
-          <button type="submit">Send</button>
-        </form>
-      `;
-    },
-  }
-);
+        <button type="submit">Send</button>
+      </form>
+    `;
+  },
+});
 
 const formatter = new Intl.DateTimeFormat("en", {
   year: "numeric",
