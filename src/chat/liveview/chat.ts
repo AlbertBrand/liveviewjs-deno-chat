@@ -57,12 +57,14 @@ export const chatLiveView = createLiveView<{ chatMessages: Chat[] }, { type: "se
         <form phx-submit="send">
           <input type="hidden" name="_csrf_token" value="${meta.csrfToken}" />
 
-          <div>
-            <label>Author: <input type="text" name="author" placeholder="Author" autocomplete="off" /></label>
-          </div>
-          <div>
-            <label>Message: <textarea type="text" name="message" placeholder="Message"></textarea></label>
-          </div>
+          <label>
+            <span>Message:</span>
+            <textarea type="text" name="message" placeholder="Message"></textarea>
+          </label>
+          <label>
+            <span>Author:</span>
+            <input type="text" name="author" placeholder="Author" autocomplete="off" />
+          </label>
 
           <button type="submit">Send</button>
         </form>
@@ -82,10 +84,16 @@ const formatter = new Intl.DateTimeFormat("en", {
 
 function renderChatMessage(c: Chat) {
   return html`
-    <pre>
-Author: ${c.author}
-Message: ${c.message}
-Timestamp: ${formatter.format(c.timestamp)}</pre
-    >
+    <fieldset>
+      <pre>${c.message}</pre>
+      <label>
+        <span>Author:</span>
+        <div>${c.author}</div>
+      </label>
+      <label>
+        <span>Timestamp:</span>
+        <div>${formatter.format(c.timestamp)}</div>
+      </label>
+    </fieldset>
   `;
 }

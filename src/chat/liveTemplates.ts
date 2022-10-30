@@ -40,6 +40,15 @@ export const liveHtmlTemplate: LiveViewHtmlPageTemplate = (
           .invalid-feedback {
             color: red;
           }
+          label {
+            display: flex;
+          }
+          label * {
+            flex: 1;
+          }
+          textarea {
+            height: 5em;
+          }
         </style>
       </head>
       <body>

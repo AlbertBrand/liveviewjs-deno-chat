@@ -20,5 +20,9 @@
   "dependencies": {
     "@liveviewjs/examples": "^0.7.5",
     "liveviewjs": "^0.7.5"
+  },
+  "scripts": {
+    "buildClient": "deno run --allow-run --allow-read --allow-write --allow-net --allow-env src/chat/buildClient.ts",
+    "dev": "deno run --watch --unstable --allow-net --allow-run --allow-read --allow-write --allow-env src/chat/index.ts"
   }
 }

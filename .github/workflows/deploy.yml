@@ -33,7 +33,7 @@ jobs:
           deno-version: v1.x
 
       - name: Build client
-        run: deno run --allow-run --allow-read --allow-write --allow-net --allow-env src/chat/buildClient.ts
+        run: npm run buildClient
 
       - name: Upload to Deno Deploy
         uses: denoland/deployctl@v1
